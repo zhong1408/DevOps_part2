@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Student</title>
+    <script src="js/addstudent_affan.js"></script>
+    <link rel="stylesheet" href="css/affan_styles.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <h1> Add New Student</h1>
+        <form id="addstudentForm" class="form">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" class="form-control" required><br>
+            </div>
+            <!--<div class="form-group">
+                
+                <label for="id" class="form-label"> Student ID: </label>
+                <input type="text" id="id" name="id" class="form-control" required><br>
+            </div> -->
+            <div class="form-group">
+                
+                <label for="age" class="form-label">Age: </label>
+                <input type="number" id="age" name="age" class="form-control" required> <br>
+            </div>
+            <div class="form-group">
+                <label  class="form-label">Course: </label>
+                <select id="course" name="course" class="form-control" required>
+                    <option value="" disabled selected> Select a course</option>
+                    <option value="Information Technology">Information Technology</option>
+                    <option value="Artificial Intelligence">Artificial Intelligence</option>
+                    <option value="CyberSecurity">CyberSecurity</option>
+                    <option value="Big Data Analytics">Big Data Analytics</option>
+                </select><br>
+            </div>
+            <div class="form-group">
+                <label for="email" class="form-label">Email:</label>
+                <input type="email" id="email" name="email" class="form-control" required><br>
+            </div>
+            <div>
+                <button type="Submit" class="btn" onclick="addstudent(event)"> Add Student</button>
+
+            </div>
+            <p id="message" class=""></p>
+        </form>
+    </div>
+</body>
+
+</html>
