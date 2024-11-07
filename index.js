@@ -3,11 +3,16 @@ var bodyParser = require("body-parser");
 var app = express();
 
 const PORT = process.env.PORT || 5050;
+
 var startPage = "index.html";
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static("./public"));
+
+
+const { addCourse } = require('./utils/AddCourseUtil_hasan.js')
+app.post('/add-course', addCourse)
 
 
 const {updatestudent} = require('./utils/updateStudent.js')
@@ -18,10 +23,10 @@ app.post("/add-student", addstudent);
 app.get("/view-students", viewStudent);
 
 
+
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/" + startPage);
 });
-
 
 server = app.listen(PORT, function () {
   const address = server.address();
@@ -32,4 +37,7 @@ server = app.listen(PORT, function () {
 });
 
 
+
 module.exports = { app, server };
+
+
