@@ -6,6 +6,11 @@ var startPage = "index.html";
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static("./public"));
+
+const { addstudent, viewStudent } = require("./utils/StudentUtil_Affan");
+app.post("/add-student", addstudent);
+app.get("/view-students", viewStudent);
+
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/" + startPage);
 });
