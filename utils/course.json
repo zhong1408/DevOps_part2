@@ -1,23 +1,23 @@
 [
-    {
-      "name": "newnameadoiajd",
-      "code": "PLS123",
-      "description": "EDITED TEST",
-      "credits": "3",
-      "id": "1730791271283202"
-    },
-    {
-      "name": "helloKAJBDAD",
-      "code": "LMS123",
-      "description": "alkdadakjdbkajna",
-      "credits": "3",
-      "id": "1730794622848618"
-    },
-    {
-      "name": "updatedcoursename",
-      "code": "UPS123",
-      "description": "For testiada,update only",
-      "credits": 3,
-      "id": "1730796106100373"
-    }
-  ]
+  {
+    "name": "newnameadoiajd",
+    "code": "PLS123",
+    "description": "EDITED TEST",
+    "credits": "3",
+    "id": "1730791271283202"
+  },
+  {
+    "name": "REUPDATED",
+    "code": "LMS123",
+    "description": "alkdadakjdbkajna",
+    "credits": "3",
+    "id": "1730794622848618"
+  },
+  {
+    "name": "REUDATEDAIUAWHDIUAHDKUAD",
+    "code": "UPS123",
+    "description": "For testiada,update only",
+    "credits": "3",
+    "id": "1730796106100373"
+  }
+]
