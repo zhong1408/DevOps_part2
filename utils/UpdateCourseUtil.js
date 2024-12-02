@@ -29,12 +29,27 @@ async function viewCourses(req, res) {
 async function updateCourse(req, res) {
     try {
         const id = req.params.id;
-        const name = req.body.name;
-        const code = req.body.code;
-        const description = req.body.description;
-        const credits = req.body.credits;
+        const { name, code, description, credits } = req.body;
+
+        // Validate all fields are provided
+        if (!name || !code || !description || !credits) {
+            return res.status(400).json({ message: 'All fields are required!' });
+        }
+
+        // Validate course code format
+        const codePattern = /^[A-Z]{3}\d{3}$/;
+        if (!codePattern.test(code)) {
+            return res.status(400).json({ message: 'Course code must be 3 uppercase letters followed by 3 numbers!' });
+        }
 
         const allCourses = await readJSON('utils/course.json');
+
+        // Check for duplicate course codes
+        const duplicate = allCourses.some(course => course.code === code && course.id !== id);
+        if (duplicate) {
+            return res.status(400).json({ message: 'Course code already exists!' });
+        }
+
         let modified = false;
 
         for (let i = 0; i < allCourses.length; i++) {
@@ -45,7 +60,6 @@ async function updateCourse(req, res) {
                 allCourses[i].description = description;
                 allCourses[i].credits = credits;
                 modified = true;
-                
             }
         }
 
@@ -59,6 +73,7 @@ async function updateCourse(req, res) {
         return res.status(500).json({ message: error.message });
     }
 }
+
 
 
 module.exports = {
