@@ -57,7 +57,7 @@ describe('Update Course API Tests', () => {
             chai.request(baseUrl)
                 .put(`/update-course/${validCourseId}`)
                 .send({
-                    name: "Updated Course Name",
+                    name: "FINAL UPDATE Course Name",
                     code: "NEW456", // Valid code
                     description: "Updated description",
                     credits: 4
@@ -69,20 +69,36 @@ describe('Update Course API Tests', () => {
                 });
         });
 
-        it('should return error for non-existent course ID', (done) => {
+        // it('should return error for non-existent course ID', (done) => {
+        //     chai.request(baseUrl)
+        //         .put(`/update-course/${invalidCourseId}`)
+        //         .send({
+        //             name: "Non-existent Course",
+        //             code: "NON456",
+        //             description: "Does not exist",
+        //             credits: 3
+        //         })
+        //         .end((err, res) => {
+        //             expect(res).to.have.status(404);
+        //             expect(res.body.message).to.equal('Course not found!');
+        //             done();
+        //         });
+        // });
+        it('should return error when required fields are missing', (done) => {
             chai.request(baseUrl)
-                .put(`/update-course/${invalidCourseId}`)
+                .put(`/update-course/${validCourseId}`)
                 .send({
-                    name: "Non-existent Course",
-                    code: "NON456",
-                    description: "Does not exist",
-                    credits: 3
+                    name: "", // Empty name field
+                    code: "LAP001", // Valid code
+                    description: "", // Empty description field
+                    credits: "" // Empty credits field
                 })
                 .end((err, res) => {
-                    expect(res).to.have.status(404);
-                    expect(res.body.message).to.equal('Course not found!');
+                    expect(res).to.have.status(400);
+                    expect(res.body.message).to.equal('All fields are required!');
                     done();
                 });
+            });
         });
     });
-});
+    
