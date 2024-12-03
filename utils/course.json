@@ -1,17 +1,16 @@
-
 [
   {
     "name": "newnameadoiajd",
-    "code": "PLS123",
+    "code": "LAP123",
     "description": "EDITED TEST",
     "credits": "3",
     "id": "1730791271283202"
   },
   {
-    "name": "REUPDATED",
-    "code": "LMS123",
-    "description": "alkdadakjdbkajna",
-    "credits": "3",
+    "name": "FINAL UPDATE Course Name",
+    "code": "NEW456",
+    "description": "Updated description",
+    "credits": 4,
     "id": "1730794622848618"
   },
   {
@@ -22,4 +21,3 @@
     "id": "1730796106100373"
   }
 ]
-

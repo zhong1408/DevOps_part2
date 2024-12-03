@@ -44,17 +44,42 @@ function updateCourse(id) {
     jsonData.description = document.getElementById("Editdescription").value;
     jsonData.credits = document.getElementById("Editcredits").value;
 
+    // Validate all fields are required
     if (jsonData.name == "" || jsonData.code == "" || jsonData.description == "" || jsonData.credits == "") {
         document.getElementById("editMessage").innerHTML = 'All fields are required!';
         document.getElementById("editMessage").setAttribute("class", "text-danger");
         return;
     }
 
+    // Validate course code format
+    var codePattern = /^[A-Z]{3}\d{3}$/;
+    if (!codePattern.test(jsonData.code)) {
+        document.getElementById("editMessage").innerHTML = 'Course code must be 3 uppercase letters followed by 3 numbers!';
+        document.getElementById("editMessage").setAttribute("class", "text-danger");
+        return;
+    }
+
+    // Check for duplicate course codes
     var request = new XMLHttpRequest();
-    request.open("PUT", "/update-course/" + id, true);
+    request.open("GET", "/view-courses", false);
     request.setRequestHeader('Content-Type', 'application/json');
     request.onload = function () {
-        response = JSON.parse(request.responseText);
+        var courses = JSON.parse(request.responseText);
+        for (var i = 0; i < courses.length; i++) {
+            if (courses[i].code === jsonData.code && courses[i].id !== id) {
+                document.getElementById("editMessage").innerHTML = 'Course code already exists!';
+                document.getElementById("editMessage").setAttribute("class", "text-danger");
+                return;
+            }
+        }
+    };
+    request.send();
+
+    var updateRequest = new XMLHttpRequest();
+    updateRequest.open("PUT", "/update-course/" + id, true);
+    updateRequest.setRequestHeader('Content-Type', 'application/json');
+    updateRequest.onload = function () {
+        response = JSON.parse(updateRequest.responseText);
         if (response.message == "Course modified successfully!") {
             document.getElementById("editMessage").innerHTML = 'Edited Course: ' + jsonData.name + '!';
             document.getElementById("editMessage").setAttribute("class", "text-success");
@@ -62,12 +87,13 @@ function updateCourse(id) {
             viewCourses();
             $('#editCourseModal').modal('hide'); 
         } else {
-            document.getElementById("editMessage").innerHTML = 'Unable to edit Course!';
+            document.getElementById("editMessage").innerHTML = 'Course code already exists!';
             document.getElementById("editMessage").setAttribute("class", "text-danger");
         }
     };
-    request.send(JSON.stringify(jsonData));
+    updateRequest.send(JSON.stringify(jsonData));
 }
+
 
 
 
