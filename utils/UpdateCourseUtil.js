@@ -7,25 +7,6 @@ async function readJSON(filename) {
         return JSON.parse(data);
     } catch (err) {  }
 }
-
-// async function writeJSON(object, filename) {
-//     try {
-//         const allObjects = await readJSON(filename);
-//         allObjects.push(object);
-//         await fs.writeFile(filename, JSON.stringify(allObjects), 'utf8');
-//         return allObjects;
-//     } catch (err) { console.error(err); throw err; }
-// }
-
-// async function viewCourses(req, res) {
-//     try {
-//         const allCourses = await readJSON('utils/course.json');
-//         return res.status(201).json(allCourses);
-//     } catch (error) {
-//         return res.status(500).json({ message: error.message });
-//     }
-// }
-
 async function updateCourse(req, res) {
     try {
         const id = req.params.id;
@@ -66,19 +47,11 @@ async function updateCourse(req, res) {
         if (modified) {
             await fs.writeFile('utils/course.json', JSON.stringify(allCourses, null, 2), 'utf8');
             return res.status(201).json({ message: 'Course modified successfully!' });
-        } else {
-            // return res.status(404).json({ message: 'Course not found!' });
-        }
+        } else {       }
     } catch (error) {
-        // return res.status(500).json({ message: error.message });
     }
 }
-
-
-
 module.exports = {
     readJSON, 
-    // writeJSON,
-    //  viewCourses, 
-     updateCourse
+    updateCourse
 };

@@ -13,7 +13,6 @@ app.use(express.static("./public"));
 
 
 const { viewCourses,updateCourse } = require('./utils/UpdateCourseUtil.js');
-// app.get('/view-courses', viewCourses);
 app.put('/update-course/:id', updateCourse);
 
 

@@ -2,7 +2,7 @@ const { describe, it, before, after } = require('mocha');
 const { expect } = require('chai');
 const chai = require('chai');
 const chaiHttp = require('chai-http');
-const { app, server } = require('../index'); // Ensure the main app entry exports `app` and `server`.
+const { app, server } = require('../index'); 
 chai.use(chaiHttp);
 
 describe('Update Course API Tests', () => {
@@ -18,7 +18,7 @@ describe('Update Course API Tests', () => {
     });
 
     describe('PUT /update-course/:id', () => {
-        const validCourseId = "1730794622848618"; // Replace with a valid course ID from your data
+        const validCourseId = "1730794622848618"; 
         const invalidCourseId = "9999999999999999";
 
         it('should return validation error for invalid course code format', (done) => {
@@ -58,7 +58,7 @@ describe('Update Course API Tests', () => {
                 .put(`/update-course/${validCourseId}`)
                 .send({
                     name: "FINAL UPDATE Course Name",
-                    code: "NEW456", // Valid code
+                    code: "NEW456",
                     description: "Updated description",
                     credits: 4
                 })
@@ -67,31 +67,15 @@ describe('Update Course API Tests', () => {
                     expect(res.body.message).to.equal('Course modified successfully!');
                     done();
                 });
-        });
-
-        // it('should return error for non-existent course ID', (done) => {
-        //     chai.request(baseUrl)
-        //         .put(`/update-course/${invalidCourseId}`)
-        //         .send({
-        //             name: "Non-existent Course",
-        //             code: "NON456",
-        //             description: "Does not exist",
-        //             credits: 3
-        //         })
-        //         .end((err, res) => {
-        //             expect(res).to.have.status(404);
-        //             expect(res.body.message).to.equal('Course not found!');
-        //             done();
-        //         });
-        // });
+        })
         it('should return error when required fields are missing', (done) => {
             chai.request(baseUrl)
                 .put(`/update-course/${validCourseId}`)
                 .send({
-                    name: "", // Empty name field
-                    code: "LAP001", // Valid code
-                    description: "", // Empty description field
-                    credits: "" // Empty credits field
+                    name: "", 
+                    code: "LAP001", 
+                    description: "", 
+                    credits: "" 
                 })
                 .end((err, res) => {
                     expect(res).to.have.status(400);
