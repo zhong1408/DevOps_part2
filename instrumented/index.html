@@ -1,0 +1,208 @@
+<html>
+
+<head>
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DVOPS - Student Management Web App</title>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="js/updatecourse.js"></script>
+
+    <script src="js/addcourse_hasan.js"></script>
+    <script src="js/frontend_js_aiman.js"></script>
+
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+
+
+
+<body onload="viewCourses()">
+  
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <img src="images/course_logo.png">
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+            </div>
+            <div class="col-md-2">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#courseModal">
+                    Add Course
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+           
+
+            <div class="row justify-content-center">
+                <div class="col-md-12">
+                    <table class="table table-striped table-striped-custom">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Code</th>
+                                <th>Description</th>
+                                <th>Credits</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableContent">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Update Modal -->
+    <div class="modal fade" id="editCourseModal" tabindex="-1" role="dialog" aria-labelledby="editCourseModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editCourseModalLabel">Edit Course</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Course Name</label>
+                            <input type="text" class="form-control" id="Editname" placeholder="Enter Course name">
+                        </div>
+                        <div class="form-group">
+                            <label for="code">code</label>
+                            <input type="text" class="form-control" id="Editcode" placeholder="Enter Course code">
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <input type="text" class="form-control" id="Editdescription"
+                                placeholder="Enter short description">
+                        </div>
+                        <div class="form-group">
+                            <label for="credits">Credits</label>
+                            <select name="credits" id="Editcredits">
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                        </div>
+                        <p align="right" id="editMessage" class=""></p>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="closeModal"data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="updateButton" onclick="updateCourse()">Update Course</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="courseModal" tabindex="-1" role="dialog" aria-labelledby="courseModalLabel" aria-hidden="true">
+
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="courseModalLabel">Add New Course</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Course Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Enter course name">
+                        </div>
+                        <div class="form-group">
+                            <label for="code">Course Code</label>
+                            <input type="text" class="form-control" id="code" placeholder="Enter course code">
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <input type="text" class="form-control" id="description"
+                                placeholder="Enter short description">
+                        </div>
+                        <div class="form-group">
+                            <label for="credits">Credits</label>
+                            <select name="credits" id="credits">
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                        </div>
+                        <p align="right" id="message" class=""></p>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="addCourse()">Add New Course</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+ 
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editResourceModal">
+        Edit Student
+    </button>
+
+    <div class="modal fade" id="editResourceModal" tabindex="-1" role="dialog" aria-labelledby="editResourceModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editResourceModalLabel">Edit Student</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="studentId">Student ID: </label>
+                            <input type="text" class="form-control" id="editId" placeholder="Enter Student ID">
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Student Name</label>
+                            <input type="text" class="form-control" id="editName" placeholder="Enter Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="location">Age</label>
+                            <input type="text" class="form-control" id="editAge" placeholder="Enter Age">
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Course</label>
+                            <input type="text" class="form-control" id="editcourse" placeholder="Enter Course">
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Email</label>
+                            <input type="text" class="form-control" id="editemail" placeholder="Enter Email">
+                        </div>
+                        <p align="right" id="editMessage" class=""></p>
+                    </form>
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="updateButton" onclick="updateStudent()">Update Student</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </body>
+    <button  onclick="window.location.href='addstudent_affan.html'">Add new Student</button>
+    <button  onclick="window.location.href='viewstudent_affan.html'">View all Students</button>
+</body>
+</html>
