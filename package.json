@@ -4,13 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "frontend-instrument": "xcopy public instrumented /I /E /Y & nyc instrument public instrumented", 
+    "frontend-test": "rmdir -r .nyc_output & nyc --nycrc-path .nycrc-frontend cypress run",
     "backend-test": "nyc --nycrc-path .nycrc-backend mocha"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@cypress/code-coverage": "^3.13.8",
     "body-parser": "^1.20.3",
+    "cypress": "^13.16.0",
     "chai": "^4.3.4",
     "chai-http": "^4.3.0",
     "express": "^4.21.1",
