@@ -43,7 +43,7 @@ describe('Update Course API Tests', () => {
                 .put(`/update-course/${validCourseId}`)
                 .send({
                     name: "Updated Course",
-                    code: "LAP123", // Duplicate code
+                    code: "LAP000", // Duplicate code
                     description: "Testing duplicate code",
                     credits: 3
                 })
@@ -84,6 +84,19 @@ describe('Update Course API Tests', () => {
                     done();
                 });
             });
+        });
+        it('should return a list of all courses', (done) => {
+            chai.request(baseUrl)
+                .get('/view-courses') 
+                .end((err, res) => {
+                    expect(res).to.have.status(201);
+                    expect(res.body[0]).to.have.property('name');
+                    expect(res.body[0]).to.have.property('code');
+                    expect(res.body[0]).to.have.property('description');
+                    expect(res.body[0]).to.have.property('credits');
+
+                    done();
+                });
         });
     });
     

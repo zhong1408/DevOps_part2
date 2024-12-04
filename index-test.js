@@ -13,6 +13,7 @@ app.use(express.static("./instrumented"));
 
 
 const { viewCourses,updateCourse } = require('./utils/UpdateCourseUtil.js');
+app.get('/view-courses', viewCourses);
 app.put('/update-course/:id', updateCourse);
 
 

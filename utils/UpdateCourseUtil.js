@@ -7,6 +7,16 @@ async function readJSON(filename) {
         return JSON.parse(data);
     } catch (err) {  }
 }
+
+async function viewCourses(req, res) {
+    try {
+        const allCourses = await readJSON('utils/course.json');
+        return res.status(201).json(allCourses);
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+}
+
 async function updateCourse(req, res) {
     try {
         const id = req.params.id;
@@ -53,5 +63,6 @@ async function updateCourse(req, res) {
 }
 module.exports = {
     readJSON, 
+    viewCourses,
     updateCourse
 };
