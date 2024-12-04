@@ -13,21 +13,7 @@ app.use(express.static("./instrumented"));
 
 
 const { viewCourses,updateCourse } = require('./utils/UpdateCourseUtil.js');
-app.get('/view-courses', viewCourses);
 app.put('/update-course/:id', updateCourse);
-
-
-const { addCourse } = require('./utils/AddCourseUtil_hasan.js')
-app.post('/add-course', addCourse)
-
-
-const {updatestudent} = require('./utils/updateStudent.js')
-app.put('/update-students', updatestudent)
-
-const { addstudent, viewStudent } = require("./utils/StudentUtil_Affan");
-app.post("/add-student", addstudent);
-app.get("/view-students", viewStudent);
-
 
 
 app.get("/", (req, res) => {

@@ -11,6 +11,7 @@ describe('Update Course API Tests', () => {
     before(async () => {
         const { address, port } = server.address();
         baseUrl = `http://${address === '::' ? 'localhost' : address}:${port}`;
+        
     });
 
     after(() => {
@@ -37,7 +38,7 @@ describe('Update Course API Tests', () => {
                 });
         });
 
-        it('should return error for duplicate course code', (done) => {
+        it('should return error for duplicate course code', (done) => { 
             chai.request(baseUrl)
                 .put(`/update-course/${validCourseId}`)
                 .send({
