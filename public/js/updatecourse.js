@@ -86,9 +86,8 @@ function updateCourse(id) {
 
             viewCourses();
             $('#editCourseModal').modal('hide'); 
-        } else {
-            // document.getElementById("editMessage").innerHTML = 'Unable to edit Course!';
-            // document.getElementById("editMessage").setAttribute("class", "text-danger");
+        }
+         else {
         }
     };
     updateRequest.send(JSON.stringify(jsonData));
