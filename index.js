@@ -15,6 +15,9 @@ app.use(express.static("./public"));
 const { viewCourses,updateCourse } = require('./utils/UpdateCourseUtil.js');
 app.put('/update-course/:id', updateCourse);
 
+
+
+
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/" + startPage);
 });
