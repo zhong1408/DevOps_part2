@@ -31,7 +31,7 @@ describe('Update Course API Tests', () => {
                     description: "Testing invalid code",
                     credits: 3
                 })
-                .end((err, res) => {
+                .end((err, res) => {    
                     expect(res).to.have.status(400);
                     expect(res.body.message).to.equal('Code must be 3 uppercase followed by 3 numbers');
                     done();
@@ -76,7 +76,7 @@ describe('Update Course API Tests', () => {
                     name: "", 
                     code: "LAP001", 
                     description: "", 
-                    credits: "" 
+ 
                 })
                 .end((err, res) => {
                     expect(res).to.have.status(400);

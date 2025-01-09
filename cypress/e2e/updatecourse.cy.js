@@ -16,13 +16,14 @@ describe('Update Course frontend', () => {
     cy.visit(baseUrl);
     cy.get('.btn-warning').filter(':contains("Edit")').first().click();
 
-    cy.get('#Editname').clear().type("FRONTEND");
+    cy.get('#Editname').clear().type("updated");
     cy.get('#Editcode').clear().type("LAP000");
-    cy.get('#Editdescription').clear().type("tetsingtesing");
+    cy.get('#Editdescription').clear().type("testtest");
+    cy.get('#Editcredits').select("3");
 
     cy.get('#updateButton').click();
 
-    cy.get('#tableContent').contains("FRONTEND").should('exist');
+    cy.get('#tableContent').contains("updated").should('exist');
     cy.get('#closeModal').click();  
   });
 
@@ -32,6 +33,8 @@ describe('Update Course frontend', () => {
     cy.get('#Editname').clear().type("Another Course");
     cy.get('#Editcode').clear().type("UPS123");  // Duplicate course code
     cy.get('#Editdescription').clear().type("Duplicate description");
+    cy.get('#Editcredits').select("3");
+
 
     cy.get('#updateButton').click();
 
@@ -48,6 +51,8 @@ describe('Update Course frontend', () => {
     cy.get('#Editname').clear().type('Updated Course Name');
     cy.get('#Editcode').clear().type('ASDF1234');  // Invalid course code
     cy.get('#Editdescription').clear().type('Updated course description');
+    cy.get('#Editcredits').select("3");
+
 
 
     cy.get('#updateButton').click();
@@ -62,11 +67,13 @@ describe('Update Course frontend', () => {
 
   it('should show error when form fields are empty', () => {
     cy.visit(baseUrl);
-    cy.get('.btn-warning', { timeout: 10000 }).should('be.visible').first().click();
+    cy.get('.btn-warning').should('be.visible').first().click();
 
     cy.get('#Editname').clear();
     cy.get('#Editcode').clear();
     cy.get('#Editdescription').clear();
+    cy.get('#Editcredits').select("3");
+
 
 
     cy.get('#updateButton').click();

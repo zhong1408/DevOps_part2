@@ -5,8 +5,16 @@
   "main": "index.js",
   "scripts": {
     "backend-test": "nyc --nycrc-path .nycrc-backend mocha",
+
     "frontend-instrument": "xcopy public instrumented /I /E /Y & nyc instrument public instrumented",
-    "frontend-test": "rmdir -r .nyc_output & nyc --nycrc-path .nycrc-frontend cypress run"
+    "frontend-test": "rmdir -r .nyc_output & nyc --nycrc-path .nycrc-frontend cypress run",
+
+    "frontend-test:edge": "rmdir -r .nyc_output & nyc --nycrc-path .nycrc-frontend cypress run --browser edge",
+    "frontend-test:chrome": "rmdir -r .nyc_output & nyc --nycrc-path .nycrc-frontend cypress run --browser chrome",
+    "frontend-test:crossbrowser":"npm run frontend-test:edge && npm run frontend-test:chrome",
+    
+    "test:all": "npm run backend-test && npm run frontend-test"
+
   },
   "keywords": [],
   "author": "",
