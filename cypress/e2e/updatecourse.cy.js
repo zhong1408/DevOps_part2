@@ -24,7 +24,7 @@ describe('Update Course frontend', () => {
     cy.get('#updateButton').click();
 
     cy.get('#tableContent').contains("updated").should('exist');
-    cy.get('#closeModal').click();  
+     
   });
 
   it('should show error for duplicate course code', () => {
@@ -41,7 +41,7 @@ describe('Update Course frontend', () => {
     cy.get('#editMessage').should('have.class', 'text-danger')
       .and('contain', 'Course code already exists!');
 
-    cy.get('#closeModal').click();  
+   
   });
 
   it('should show error for invalid course code', () => {
@@ -61,7 +61,7 @@ describe('Update Course frontend', () => {
       .and('contain', 'Course code must be 3 uppercase letters followed by 3 numbers!');
 
 
-    cy.get('#closeModal').click(); 
+ 
   });
 
 
@@ -81,7 +81,7 @@ describe('Update Course frontend', () => {
     cy.get('#editMessage').should('have.class', 'text-danger')
       .and('contain', 'All fields are required!');
 
-    cy.get('#closeModal').click(); 
+   
   });
 });
 
